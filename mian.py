@@ -23,4 +23,4 @@ class TextFilter:
 if __name__ == '__main__':
 	t = TextFilter()
 	t.parse("keywords")
-	print(t.filter("过滤:法论功"))
+	print(t.filter("拒绝法论功，拒绝黄赌毒"))
