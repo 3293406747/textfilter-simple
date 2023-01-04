@@ -1,26 +1,28 @@
 class TextFilter:
-
+	""" 敏感词过滤 """
 	def __init__(self):
-		self.seq = list()
+		self.array = []
 
-	def parse(self,path):
-		with open(path, encoding="utf-8") as f:
+	def parse(self, fileName):
+		with open(fileName, encoding="utf-8") as f:
 			for keyword in f.readlines():
 				self.add(keyword.strip())
 
 	def add(self,keyword):
 		if isinstance(keyword,str):
-			self.seq.append(keyword)
+			return self.array.append(keyword)
+		raise ValueError
 
 	def filter(self,message:str,repl="*"):
 		if isinstance(message,str):
 			message = message.lower()
-			for i in self.seq:
+			for i in self.array:
 				message = message.replace(i,repl*len(i))
-		return message
+			return message
+		raise ValueError
 
 
 if __name__ == '__main__':
-	t = TextFilter()
-	t.parse("keywords")
-	print(t.filter("拒绝法论功，拒绝黄赌毒"))
+	tf = TextFilter()
+	tf.parse("keywords")
+	print(tf.filter("拒绝法论功，拒绝黄赌毒"))
